@@ -3,4 +3,4 @@ loguru==0.7.2
 PyYAML==6.0
 PyYAML==6.0.1
 PyYAML==6.0.1
-streamlit==1.30.0
+streamlit==1.28.1
