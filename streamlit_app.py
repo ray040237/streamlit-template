@@ -46,7 +46,7 @@ if __name__ == "__main__":
     version = config.get("version", "0.0.1")
     readme=config.get("readme")
     st.markdown(
-        f"<h3 style='text-align: center;'>{title} v{version}</h3><br/><h3 style='text-align: center;'>{readme}</h3><br/>",
+        f"<h3 style='text-align: center;'>{title} v{version}</h3><br/><h5 style='text-align: center;'>{readme}</h5><br/>",
         unsafe_allow_html=True,
     )
 
