@@ -44,9 +44,10 @@ def tips(txt: str, wait_time: int = 2, icon: str = "🎉"):
 if __name__ == "__main__":
     title = config.get("title")
     version = config.get("version", "0.0.1")
+    readme=config.get("readme")
     st.markdown(
         f"<h3 style='text-align: center;'>{title} v{version}</h3><br/>",
-        f"<h5 style='text-align: center;'>暂时仅支持台区、柱上开关（含自动化）运行转检修或检修转运行</h5><br/>",
+        f"<h5 style='text-align: center;'>{readme}</h5><br/>",
         unsafe_allow_html=True,
     )
 
