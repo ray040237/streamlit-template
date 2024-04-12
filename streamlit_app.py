@@ -88,8 +88,8 @@ if __name__ == "__main__":
     #         value=config.get("DEFAULT_PROMPT"),
     #         key="input_prompt",
     #     )
-    bot_print("我是操作票生成助手，你可以输入操作任务和设备的相关信息，我帮你生成操作票。\n\
-              例如：将110kV西南站10kv斗文线FA2 #1杆流沙公用台由运行转检修，有1个低压刀闸，3个低压开关")
+    bot_print("我是操作票生成助手，你可以输入操作任务和设备的相关信息，我帮你生成操作票。例如：\n\
+              将110kV西南站10kv斗文线FA2 #1杆流沙公用台由运行转检修，有1个低压刀闸，3个低压开关")
     input_txt = st.chat_input("问点啥吧！")
     if input_txt:
         with st.chat_message("user", avatar="😀"):
