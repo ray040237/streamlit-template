@@ -42,8 +42,9 @@ def tips(txt: str, wait_time: int = 2, icon: str = "🎉"):
 if __name__ == "__main__":
     title = config.get("title")
     version = config.get("version", "0.0.1")
+    readme=config.get("readme")
     st.markdown(
-        f"<h3 style='text-align: center;'>{title} v{version}</h3><br/>",
+        f"<h3 style='text-align: center;'>{title} v{version}</h3><i><h6 style='text-align: center;'>{readme}</h6></i><br/>",
         unsafe_allow_html=True,
     )
 
@@ -57,6 +58,18 @@ if __name__ == "__main__":
         name: getattr(llm_module, name)(**params) for name, params in llm_params.items()
     }
 
+    # with st.expander("💡Prompt", expanded=False):
+    #     text_area = st.empty()
+    #     input_prompt = text_area.text_area(
+    #         label="Input",
+    #         max_chars=500,
+    #         height=200,
+    #         label_visibility="hidden",
+    #         value=config.get("DEFAULT_PROMPT"),
+    #         key="input_prompt",
+    #     )
+    bot_print("我是操作票生成助手，你可以输入操作任务和设备的相关信息，我帮你生成操作票。\n\
+              例如：将110kV西南站10kv斗文线FA2 #1杆流沙公用台由运行转检修，有1个低压刀闸，3个低压开关")
     input_txt = st.chat_input("问点啥吧！")
     bot_print("我是操作票生成助手，你可以输入操作任务和设备的相关信息，我帮你生成操作票。\n\
               例如：将110kV西南站10kv斗文线FA2 #1杆流沙公用台由运行转检修，有1个低压刀闸，3个低压开关")
@@ -87,3 +100,5 @@ if __name__ == "__main__":
         bot_print(str_result)
 
 #streamlit run streamlit_app.py
+        # print(str_result)
+        bot_print(str_result)

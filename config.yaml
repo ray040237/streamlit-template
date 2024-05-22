@@ -1,6 +1,6 @@
 title: 操作票生成助手
 version: 0.0.1
-
+readme: 暂时仅支持台区、柱上开关（含自动化）运行转检修或检修转运行
 LLM_API:
   ERNIEBot:
     api_type: aistudio
