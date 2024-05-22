@@ -5,7 +5,7 @@ from datetime import datetime
 from pathlib import Path
 from string import Template
 from typing import List, Union
-
+import re
 import yaml
 
 
@@ -42,3 +42,10 @@ def read_txt(txt_path: Union[Path, str]) -> List[str]:
     with open(txt_path, "r", encoding="gbk") as f:
         data = list(map(lambda x: x.rstrip("\n"), f))
     return data
+def extract_json(s):
+    pattern = r'\{(.|\n)*\}'
+    json_str = re.search(pattern, s)
+    if json_str:
+        return json_str.group()
+    else:
+        return None

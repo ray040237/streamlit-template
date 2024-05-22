@@ -53,7 +53,6 @@ def SOP_C2R(name, blade, auto):
         Switch = Switch.group()
     else:
         return []
-
     GroundConnection = f'{Switch}开关' if blade == 1 else f'{Switch}2刀闸'
     Blade_blank = [''] * 2
     Auto_blank = [''] * 7
