@@ -54,7 +54,7 @@ class SFBot:
         url = "https://api.siliconflow.cn/v1/chat/completions"
 
         payload = {
-            "model": "01-ai/Yi-1.5-6B-Chat",
+            "model": "Qwen/Qwen2.5-7B-Instruct"",
             # Qwen/Qwen2-1.5B-Instruct  Qwen/Qwen2.5-7B-Instruct  THUDM/chatglm3-6b  internlm/internlm2_5-7b-chat  01-ai/Yi-1.5-6B-Chat
             "messages": [
                 # {
