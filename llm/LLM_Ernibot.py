@@ -24,9 +24,12 @@ class ERNIEBot:
                 "ak": self.ak,
                 "sk": self.sk,
             },
-            model="ernie-lite",
+            # model="ernie-lite",
+            model="ernie-speed",
             # model="ernie-bot",
-
+            # model="ai_apaas",
+            # https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/ai_apaas
+            # https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/ernie_speed
             messages=[
                 {
                     "role": "user",

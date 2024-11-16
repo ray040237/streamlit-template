@@ -51,7 +51,9 @@ if __name__ == "__main__":
     llm_module = importlib.import_module("llm")
     llm_params: Dict[str, Dict] = config.get("LLM_API")
     # select_model = 'DeepseekChat'
-    select_model = 'ERNIEBot'
+    select_model = 'SFBot'
+    # select_model = 'AtomBot'
+    # select_model = 'ERNIEBot'
     # select_model = 'ollamaBot'
 
     MODEL_OPTIONS = {
@@ -69,7 +71,7 @@ if __name__ == "__main__":
     #         key="input_prompt",
     #     )
     bot_print("我是操作票生成助手，你可以输入操作任务和设备的相关信息，我帮你生成操作票。\n\
-              例如：将110kV西南站10kv斗文线FA2 #1杆流沙公用台由运行转检修，有1个低压刀闸，3个低压开关")
+              例如：将110kV西南站10kv河东线FA2 #1杆 1T1开关后段线路由运行转检修，有一个高压刀闸，不是自动化开关")
     input_txt = st.chat_input("问点啥吧！")
     if input_txt:
         with st.chat_message("user", avatar="😀"):

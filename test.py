@@ -1,24 +1,5 @@
-title: 操作票生成助手
-version: 0.0.1
-#readme: 暂时仅支持台区、柱上开关（含自动化）运行转检修或检修转运行
-LLM_API:
-  ERNIEBot:
-    api_type: aistudio
-    access_token: d825eeefff61b2fa0355228203c7835b3c183add
-  ollamaBot:
-    api_type: aistudio
-    access_token: d825eeefff61b2fa0355228203c7835b3c183add
-  DeepseekChat:
-    api_type: aistudio
-    access_token: d825eeefff61b2fa0355228203c7835b3c183add
-  AtomBot:
-    api_type: aistudio
-    access_token: d825eeefff61b2fa0355228203c7835b3c183add
-  SFBot:
-    api_type: aistudio
-    access_token: d825eeefff61b2fa0355228203c7835b3c183add
 
-DEFAULT_PROMPT: |
+DEFAULT_PROMPT='''
   #角色
   -你是一个智能助手，根据规则抽取信息，无需输出思考过程和注释文字，仅输出答案json格式。
   #提取规则
@@ -55,40 +36,31 @@ DEFAULT_PROMPT: |
   "低压开关数量": 3,
   "是否为自动化开关": false
   }
-  # 问题是：$query
+'''
+import requests
+import json
+url = "https://api.siliconflow.cn/v1/chat/completions"
 
-upload_dir: assets/raw_upload_files
-vector_db_path: assets/db/DefaultVector.db
+payload = {
+    "model": "01-ai/Yi-1.5-6B-Chat",
+    # Qwen/Qwen2-1.5B-Instruct  Qwen/Qwen2.5-7B-Instruct  THUDM/chatglm3-6b  internlm/internlm2_5-7b-chat  01-ai/Yi-1.5-6B-Chat
+    "messages": [
+        {
+            "role": "system",
+            "content": DEFAULT_PROMPT
+        },
+        {
+            "role": "user",
+            "content": "将110kV南郊站10kV园林线FG6 #8杆绿地公用台由热备用转检修，有2个高压刀闸，有1个低压刀闸，2个低压开关。"
+        }
+    ],
+    "stream": False
+}
+headers = {
+    "Authorization": "Bearer sk-pritvkbdvlghpcbawpvalalvckgqtrjqmmrfbtxjqnqpkivu",
+    "Content-Type": "application/json"
+}
 
-encoder_batch_size: 16
-Encoder:
-  ERNIEBot:
-    api_type: aistudio
-    access_token: d825eeefff61b2fa0355228203c7835b3c183add
-#   m3e-small:
-#     model_path: assets/models/m3e-small
+response = requests.request("POST", url, json=payload, headers=headers)
 
-# text splitter
-SENTENCE_SIZE: 200
-
-top_k: 5
-
-Parameter:
-  max_length:
-    min_value: 0
-    max_value: 4096
-    default: 1024
-    step: 1
-    tip: 生成结果时的最大token数
-  top_p:
-    min_value: 0.0
-    max_value: 1.0
-    default: 0.7
-    step: 0.01
-    tip: 用于控制模型生成文本时，选择下一个单词的概率分布的范围。
-  temperature:
-    min_value: 0.01
-    max_value: 1.0
-    default: 0.01
-    step: 0.01
-    tip: 用于调整模型生成文本时的创造性程度，较高的temperature将使模型更有可能生成新颖、独特的文本，而较低的温度则更有可能生成常见或常规的文本
+print(json.loads(response.text)['choices'][0]['message']['content'])
